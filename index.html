@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh_cn">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -108,7 +108,7 @@
 <meta property="og:title" content="Eightmonth">
 <meta property="og:url" content="https://kezhijie.org/index.html">
 <meta property="og:site_name" content="Eightmonth">
-<meta property="og:locale" content="zh_cn">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Eightmonth">
 
@@ -168,7 +168,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh_cn">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -195,7 +195,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -223,7 +223,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -240,7 +240,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -312,7 +312,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/22/dubbo/" class="post-title-link" itemprop="https://kezhijie.org/index.html">Unbenannt</a>
+                <a href="/2018/12/22/dubbo/" class="post-title-link" itemprop="https://kezhijie.org/index.html">Dubbo源码架构</a>
               
             
           </h1>
@@ -330,14 +330,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-12-22 10:33:11" itemprop="dateCreated datePublished" datetime="2018-12-22T10:33:11+08:00">2018-12-22</time>
+              <time title="创建时间：2018-12-22 10:46:53" itemprop="dateCreated datePublished" datetime="2018-12-22T10:46:53+08:00">2018-12-22</time>
             
 
             
@@ -374,10 +374,11 @@
         
           
             <h1 id="Dubbo源码架构"><a href="#Dubbo源码架构" class="headerlink" title="Dubbo源码架构"></a>Dubbo源码架构</h1><blockquote>
+<p>个人笔记，非原创博文 </p>
 <p>最顶层概念：要么是提供方（Provider）提供服务，要么是消费方（Customer）消费服务。</p>
 <p>源码地址：<a href="https://github.com/alibaba/dubbo" target="_blank" rel="noopener">https://github.com/alibaba/dubbo</a></p>
 </blockquote>
-<h3 id="架构抽象图"><a href="#架构抽象图" class="headerlink" title="架构抽象图"></a>架构抽象图</h3><p><img src="dubbo.png" alt="dubbo架构"></p>
+<h3 id="架构抽象图"><a href="#架构抽象图" class="headerlink" title="架构抽象图"></a>架构抽象图</h3><p><img src="../../../../img/dubbo/dubbo.png" alt="dubbo架构"></p>
 <h3 id="架构图一说明"><a href="#架构图一说明" class="headerlink" title="架构图一说明"></a>架构图一说明</h3><p>Dubbo框架设计一共划分了10个层，而最上面的Service层是留给实际想要使用Dubbo开发分布式服务的开发者实现业务逻辑的接口层。图中左边淡蓝背景的为服务消费方使用的接口，右边淡绿色背景的为服务提供方使用的接口， 位于中轴线上的为双方都用到的接口。</p>
 <h3 id="1-业务逻辑"><a href="#1-业务逻辑" class="headerlink" title="1.业务逻辑"></a>1.业务逻辑</h3><p>服务接口层（Service）：该层是与实际业务逻辑相关的，根据服务提供方和服务消费方的业务设计对应的接口和实现。</p>
 <h3 id="2-RPC模块"><a href="#2-RPC模块" class="headerlink" title="2.RPC模块"></a>2.RPC模块</h3><ul>
@@ -428,7 +429,7 @@
 <li>Netty</li>
 <li>Grizzly</li>
 </ul>
-<h4 id="5-服务调用"><a href="#5-服务调用" class="headerlink" title="5.服务调用"></a>5.服务调用</h4><p><img src="service-call.png" alt="service-call"></p>
+<h4 id="5-服务调用"><a href="#5-服务调用" class="headerlink" title="5.服务调用"></a>5.服务调用</h4><p><img src="../../../../img/dubbo/service-call.png" alt="service-call"></p>
 <blockquote>
 <p>服务调用过程</p>
 <p>上图中，蓝色的表示与业务有交互，绿色的表示只对Dubbo内部交互。上述图所描述的调用流程如下：</p>
@@ -439,9 +440,9 @@
 </ol>
 </blockquote>
 <p>详细如图所示：</p>
-<p><img src="service-call-detail.png" alt="service-call-detail"></p>
-<h4 id="4-服务注册与注销"><a href="#4-服务注册与注销" class="headerlink" title="4.服务注册与注销"></a>4.服务注册与注销</h4><p><img src="service-register.png" alt="service-register"></p>
-<h4 id="5-服务订阅与取消"><a href="#5-服务订阅与取消" class="headerlink" title="5.服务订阅与取消"></a>5.服务订阅与取消</h4><p><img src="service-Subscribe.png" alt="service-Subscribe"></p>
+<p><img src="../../../../img/dubbo/service-call-detail.png" alt="service-call-detail"></p>
+<h4 id="4-服务注册与注销"><a href="#4-服务注册与注销" class="headerlink" title="4.服务注册与注销"></a>4.服务注册与注销</h4><p><img src="../../../../img/dubbo/service-register.png" alt="service-register"></p>
+<h4 id="5-服务订阅与取消"><a href="#5-服务订阅与取消" class="headerlink" title="5.服务订阅与取消"></a>5.服务订阅与取消</h4><p><img src="../img/dubbo/service-Subscribe.png" alt="service-Subscribe"></p>
 <h4 id="6-协议支持"><a href="#6-协议支持" class="headerlink" title="6.协议支持"></a>6.协议支持</h4><p>Dubbo支持自定义扩展协议，实现dubbo-rpc-api即可扩展出一种Dubbo支持的协议。Dubbo目前已实现的协议如下：</p>
 <ul>
 <li>Dubbo协议</li>
@@ -454,7 +455,7 @@
 <li>Redis协议</li>
 </ul>
 <h2 id="Dubbo模块图"><a href="#Dubbo模块图" class="headerlink" title="Dubbo模块图"></a>Dubbo模块图</h2><p>Dubbo以包结构来组织各个模块，各个模块及其关系，如图所示：</p>
-<p><img src="../img/dubbo/module.png" alt="module"></p>
+<p><img src="../../../../img/dubbo/module.png" alt="module"></p>
 <ul>
 <li>Dubbo-common 公共逻辑模块，包括Util类和通用模型。</li>
 <li>Dubbo-remoting 远程通讯模块，相当于Dubbo协议的实现，如果RPC用RMI协议则不需要使用此包。</li>
@@ -559,14 +560,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-12-19 16:13:31" itemprop="dateCreated datePublished" datetime="2018-12-19T16:13:31+08:00">2018-12-19</time>
+              <time title="创建时间：2018-12-19 16:13:31" itemprop="dateCreated datePublished" datetime="2018-12-19T16:13:31+08:00">2018-12-19</time>
             
 
             
@@ -696,7 +697,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -750,7 +751,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -758,7 +759,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
 
 
 
