@@ -244,7 +244,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">2</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">3</span></a>
 
   </li>
 
@@ -309,6 +309,199 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kezhijie.org/2019/01/31/Spring Boot 初始化及加载/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eightmonth | 柯志杰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eightmonth">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/31/Spring Boot 初始化及加载/" class="post-title-link" itemprop="https://kezhijie.org/index.html">Spring Boot 初始化及加载</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-31 14:59:46" itemprop="dateCreated datePublished" datetime="2019-01-31T14:59:46+08:00">2019-01-31</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring-boot/" itemprop="url" rel="index"><span itemprop="name">Spring boot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Spring-Boot-初始化及加载"><a href="#Spring-Boot-初始化及加载" class="headerlink" title="Spring Boot 初始化及加载"></a>Spring Boot 初始化及加载</h2><h4 id="1-设置开关"><a href="#1-设置开关" class="headerlink" title="1. 设置开关"></a>1. 设置开关</h4><p>bannerMode (横幅模式，默认为CONSOLE)</p>
+<p>logStartupInfo (日志开关，默认为true)</p>
+<p>addCommandLineProperties (添加命令行属性开关，默认为true)</p>
+<p>headless (程序运行模式，java.jwt.headless=true)</p>
+<p>registerShutdownHook (注册销毁回调，默认为true)</p>
+<h4 id="2-初始化profile容器"><a href="#2-初始化profile容器" class="headerlink" title="2.初始化profile容器"></a>2.初始化profile容器</h4><p>存储当前激活的profile</p>
+<h4 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3.初始化"></a>3.初始化</h4><h5 id="3-1-推断运行环境"><a href="#3-1-推断运行环境" class="headerlink" title="3.1 推断运行环境"></a>3.1 推断运行环境</h5><p>首先判定classpath下是否包含<code>javax.servlet.Servlet</code>类或<code>org.springframework.web.context.ConfigurableWebApplicationContext</code>类，若包含二者其中一个，则推断当前程序为web程序</p>
+<h5 id="3-2-初始化初始工厂类"><a href="#3-2-初始化初始工厂类" class="headerlink" title="3.2 初始化初始工厂类"></a>3.2 初始化初始工厂类</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.context.ApplicationContextInitializer</code>的值——工厂类的全限定名</p>
+<h5 id="3-3-初始化容器监听"><a href="#3-3-初始化容器监听" class="headerlink" title="3.3 初始化容器监听"></a>3.3 初始化容器监听</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.context.ApplicationListener</code>的值——容器监听的全限定名</p>
+<h5 id="3-4-推断程序入口主类"><a href="#3-4-推断程序入口主类" class="headerlink" title="3.4 推断程序入口主类"></a>3.4 推断程序入口主类</h5><p>根据栈帧推断程序入口类</p>
+<h4 id="4-加载"><a href="#4-加载" class="headerlink" title="4.加载"></a>4.加载</h4><h5 id="4-1-注册StopWatch并打开"><a href="#4-1-注册StopWatch并打开" class="headerlink" title="4.1 注册StopWatch并打开"></a>4.1 注册<code>StopWatch</code>并打开</h5><h5 id="4-2-初始化环境配置容器"><a href="#4-2-初始化环境配置容器" class="headerlink" title="4.2 初始化环境配置容器"></a>4.2 初始化环境配置容器</h5><h5 id="4-3-初始化失败分析器"><a href="#4-3-初始化失败分析器" class="headerlink" title="4.3 初始化失败分析器"></a>4.3 初始化失败分析器</h5><h5 id="4-4-响应程序运行模式（前面提到的-java-awt-headless，这里不扩展此点，自行查阅资料）"><a href="#4-4-响应程序运行模式（前面提到的-java-awt-headless，这里不扩展此点，自行查阅资料）" class="headerlink" title="4.4 响应程序运行模式（前面提到的 java.awt.headless，这里不扩展此点，自行查阅资料）"></a>4.4 响应程序运行模式（前面提到的 java.awt.headless，这里不扩展此点，自行查阅资料）</h5><h5 id="4-5-加载spring-boot监听"><a href="#4-5-加载spring-boot监听" class="headerlink" title="4.5 加载spring boot监听"></a>4.5 加载spring boot监听</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.boot.SpringApplicationRunListener</code>的值——spring boot监听的全限定名</p>
+<h5 id="4-6-加载应用参数"><a href="#4-6-加载应用参数" class="headerlink" title="4.6 加载应用参数"></a>4.6 加载应用参数</h5><p>根据程序入口<code>main（String[] args）</code>中的参数配置对应的应用参数，等到应用参数对象。</p>
+<h5 id="4-7-根据应用参数及spring-boot监听配置环境并提供环境配置对象"><a href="#4-7-根据应用参数及spring-boot监听配置环境并提供环境配置对象" class="headerlink" title="4.7 根据应用参数及spring boot监听配置环境并提供环境配置对象"></a>4.7 根据应用参数及<code>spring boot</code>监听配置环境并提供环境配置对象</h5><p>获取或创建环境容器</p>
+<p>加载配置文件并根据<code>spring.profiles.active</code>加载profile</p>
+<p>加载配置文件并触发<code>环境前监听</code></p>
+<h5 id="4-8-打印横幅"><a href="#4-8-打印横幅" class="headerlink" title="4.8 打印横幅"></a>4.8 打印横幅</h5><h5 id="4-9-创建ApplicationContext"><a href="#4-9-创建ApplicationContext" class="headerlink" title="4.9 创建ApplicationContext"></a>4.9 创建ApplicationContext</h5><h5 id="4-10-创建失败分析器"><a href="#4-10-创建失败分析器" class="headerlink" title="4.10 创建失败分析器"></a>4.10 创建失败分析器</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.boot.diagnostics.FailureAnalyzer</code>的值——失败分析器的全限定名，</p>
+<p>并且注入<code>BeanFactory</code>。</p>
+<p>注意，此失败分析器与4.3提到的并不是一个失败分析器，当前创建失败分析器为配置<code>spring.factories</code>中的失败分析器。</p>
+<h5 id="4-11-前置配置ApplicationContext"><a href="#4-11-前置配置ApplicationContext" class="headerlink" title="4.11 前置配置ApplicationContext"></a>4.11 前置配置ApplicationContext</h5><p>注入前面构建好的环境对象到<code>ApplicationContext</code></p>
+<p>根据<code>BeanNamedGenerator</code>和<code>ResourceLoader</code>后置处理ApplicationContext</p>
+<p>应用所有初始化器</p>
+<p>响应应用上下文前置监听</p>
+<p>初始化日志对象</p>
+<p>把应用参数对象加入到容器中</p>
+<p>加载所有资源到<code>ApplicationContext</code></p>
+<p>响应应用加载时监听</p>
+<h5 id="4-12-刷新ApplicationContext"><a href="#4-12-刷新ApplicationContext" class="headerlink" title="4.12 刷新ApplicationContext"></a>4.12 刷新ApplicationContext</h5><p>刷新<code>BeanFactory</code></p>
+<p>自定义后置处理<code>Bean</code>工厂，若未继承<code>SpringApplication</code>并且未实现该方法，未此步骤忽略</p>
+<p>调用<code>Bean</code>工厂后置处理器</p>
+<p>注册<code>Bean</code>后置处理器</p>
+<p>初始化国际化</p>
+<p>初始化应用事件</p>
+<p>自定义刷新，若未继承<code>SpringApplication</code>并且未实现该方法，未此步骤忽略</p>
+<p>注册所有监听到容器</p>
+<p>结束<code>BeanFactory</code>初始化</p>
+<p>结束<code>IOC</code>容器初始化</p>
+<p>注册销毁回调</p>
+<h5 id="4-13-刷新后处理"><a href="#4-13-刷新后处理" class="headerlink" title="4.13 刷新后处理"></a>4.13 刷新后处理</h5><p>回调所有Runner</p>
+<h5 id="4-14-响应所有上下文初始化完成时监听"><a href="#4-14-响应所有上下文初始化完成时监听" class="headerlink" title="4.14 响应所有上下文初始化完成时监听"></a>4.14 响应所有上下文初始化完成时监听</h5><h5 id="4-15-关闭StopWatch"><a href="#4-15-关闭StopWatch" class="headerlink" title="4.15 关闭StopWatch"></a>4.15 关闭<code>StopWatch</code></h5><h5 id="4-16-日志输出"><a href="#4-16-日志输出" class="headerlink" title="4.16 日志输出"></a>4.16 日志输出</h5>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -765,7 +958,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -782,7 +975,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   
                 </div>
@@ -845,7 +1040,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
