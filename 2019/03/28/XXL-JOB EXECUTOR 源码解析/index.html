@@ -96,20 +96,24 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Eightmonth">
-<meta property="og:url" content="https://kezhijie.org/index.html">
+  <meta name="description" content="XXL-JOB EXECUTOR 源码解析 xxl-job 是一个分布式调度框架，同时具备GLUE特性。 xxl-job 分两部分，一为执行器，二为调度器，执行器的职责是具体的作业，而调度器的职责是接收原生配置的调度策略进行任务调度执行器作业。 此文专门讲解执行器部分，全文围绕spring boot环境讲解。 xxl-job version: 2.0.2-SNAPSHOT 官方地址：http://">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XXL-JOB EXECUTOR 源码解析">
+<meta property="og:url" content="https://kezhijie.org/2019/03/28/XXL-JOB EXECUTOR 源码解析/index.html">
 <meta property="og:site_name" content="Eightmonth">
+<meta property="og:description" content="XXL-JOB EXECUTOR 源码解析 xxl-job 是一个分布式调度框架，同时具备GLUE特性。 xxl-job 分两部分，一为执行器，二为调度器，执行器的职责是具体的作业，而调度器的职责是接收原生配置的调度策略进行任务调度执行器作业。 此文专门讲解执行器部分，全文围绕spring boot环境讲解。 xxl-job version: 2.0.2-SNAPSHOT 官方地址：http://">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-28T06:39:20.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eightmonth">
+<meta name="twitter:title" content="XXL-JOB EXECUTOR 源码解析">
+<meta name="twitter:description" content="XXL-JOB EXECUTOR 源码解析 xxl-job 是一个分布式调度框架，同时具备GLUE特性。 xxl-job 分两部分，一为执行器，二为调度器，执行器的职责是具体的作业，而调度器的职责是接收原生配置的调度策略进行任务调度执行器作业。 此文专门讲解执行器部分，全文围绕spring boot环境讲解。 xxl-job version: 2.0.2-SNAPSHOT 官方地址：http://">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kezhijie.org/">
+  <link rel="canonical" href="https://kezhijie.org/2019/03/28/XXL-JOB EXECUTOR 源码解析/">
 
 
 
@@ -119,7 +123,7 @@
   };
 </script>
 
-  <title>Eightmonth</title>
+  <title>XXL-JOB EXECUTOR 源码解析 | Eightmonth</title>
   
 
 
@@ -167,8 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -206,7 +209,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -301,9 +304,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -335,10 +338,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/28/XXL-JOB EXECUTOR 源码解析/" class="post-title-link" itemprop="url">XXL-JOB EXECUTOR 源码解析</a>
+          <h1 class="post-title" itemprop="name headline">XXL-JOB EXECUTOR 源码解析
+
               
             
           </h1>
@@ -423,9 +424,7 @@
       
 
       
-        
-          
-            <h1 id="XXL-JOB-EXECUTOR-源码解析"><a href="#XXL-JOB-EXECUTOR-源码解析" class="headerlink" title="XXL-JOB EXECUTOR 源码解析"></a>XXL-JOB EXECUTOR 源码解析</h1><blockquote>
+        <h1 id="XXL-JOB-EXECUTOR-源码解析"><a href="#XXL-JOB-EXECUTOR-源码解析" class="headerlink" title="XXL-JOB EXECUTOR 源码解析"></a>XXL-JOB EXECUTOR 源码解析</h1><blockquote>
 <p>xxl-job 是一个分布式调度框架，同时具备GLUE特性。</p>
 <p>xxl-job 分两部分，一为执行器，二为调度器，执行器的职责是具体的作业，而调度器的职责是接收原生配置的调度策略进行任务调度执行器作业。</p>
 <p>此文专门讲解执行器部分，全文围绕<code>spring boot</code>环境讲解。</p>
@@ -486,8 +485,6 @@
 </ol>
 <p>构建外部可以访问的web入口，向调度器注册自身，提供被调度的入口。</p>
 
-          
-        
       
     </div>
 
@@ -510,206 +507,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kezhijie.org/2019/01/31/Spring Boot 初始化及加载/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eightmonth | 柯志杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eightmonth">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/31/Spring Boot 初始化及加载/" class="post-title-link" itemprop="url">Spring Boot 初始化及加载</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/01/31/Spring Boot 初始化及加载/" rel="next" title="Spring Boot 初始化及加载">
+                <i class="fa fa-chevron-left"></i> Spring Boot 初始化及加载
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-31 14:59:46" itemprop="dateCreated datePublished" datetime="2019-01-31T14:59:46+08:00">2019-01-31</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring-boot/" itemprop="url" rel="index"><span itemprop="name">Spring boot</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="Spring-Boot-初始化及加载"><a href="#Spring-Boot-初始化及加载" class="headerlink" title="Spring Boot 初始化及加载"></a>Spring Boot 初始化及加载</h2><h4 id="1-设置开关"><a href="#1-设置开关" class="headerlink" title="1. 设置开关"></a>1. 设置开关</h4><p>bannerMode (横幅模式，默认为CONSOLE)</p>
-<p>logStartupInfo (日志开关，默认为true)</p>
-<p>addCommandLineProperties (添加命令行属性开关，默认为true)</p>
-<p>headless (程序运行模式，java.jwt.headless=true)</p>
-<p>registerShutdownHook (注册销毁回调，默认为true)</p>
-<h4 id="2-初始化profile容器"><a href="#2-初始化profile容器" class="headerlink" title="2.初始化profile容器"></a>2.初始化profile容器</h4><p>存储当前激活的profile</p>
-<h4 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3.初始化"></a>3.初始化</h4><h5 id="3-1-推断运行环境"><a href="#3-1-推断运行环境" class="headerlink" title="3.1 推断运行环境"></a>3.1 推断运行环境</h5><p>首先判定classpath下是否包含<code>javax.servlet.Servlet</code>类或<code>org.springframework.web.context.ConfigurableWebApplicationContext</code>类，若包含二者其中一个，则推断当前程序为web程序</p>
-<h5 id="3-2-初始化初始工厂类"><a href="#3-2-初始化初始工厂类" class="headerlink" title="3.2 初始化初始工厂类"></a>3.2 初始化初始工厂类</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.context.ApplicationContextInitializer</code>的值——工厂类的全限定名</p>
-<h5 id="3-3-初始化容器监听"><a href="#3-3-初始化容器监听" class="headerlink" title="3.3 初始化容器监听"></a>3.3 初始化容器监听</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.context.ApplicationListener</code>的值——容器监听的全限定名</p>
-<h5 id="3-4-推断程序入口主类"><a href="#3-4-推断程序入口主类" class="headerlink" title="3.4 推断程序入口主类"></a>3.4 推断程序入口主类</h5><p>根据栈帧推断程序入口类</p>
-<h4 id="4-加载"><a href="#4-加载" class="headerlink" title="4.加载"></a>4.加载</h4><h5 id="4-1-注册StopWatch并打开"><a href="#4-1-注册StopWatch并打开" class="headerlink" title="4.1 注册StopWatch并打开"></a>4.1 注册<code>StopWatch</code>并打开</h5><h5 id="4-2-初始化环境配置容器"><a href="#4-2-初始化环境配置容器" class="headerlink" title="4.2 初始化环境配置容器"></a>4.2 初始化环境配置容器</h5><h5 id="4-3-初始化失败分析器"><a href="#4-3-初始化失败分析器" class="headerlink" title="4.3 初始化失败分析器"></a>4.3 初始化失败分析器</h5><h5 id="4-4-响应程序运行模式（前面提到的-java-awt-headless，这里不扩展此点，自行查阅资料）"><a href="#4-4-响应程序运行模式（前面提到的-java-awt-headless，这里不扩展此点，自行查阅资料）" class="headerlink" title="4.4 响应程序运行模式（前面提到的 java.awt.headless，这里不扩展此点，自行查阅资料）"></a>4.4 响应程序运行模式（前面提到的 java.awt.headless，这里不扩展此点，自行查阅资料）</h5><h5 id="4-5-加载spring-boot监听"><a href="#4-5-加载spring-boot监听" class="headerlink" title="4.5 加载spring boot监听"></a>4.5 加载spring boot监听</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.boot.SpringApplicationRunListener</code>的值——spring boot监听的全限定名</p>
-<h5 id="4-6-加载应用参数"><a href="#4-6-加载应用参数" class="headerlink" title="4.6 加载应用参数"></a>4.6 加载应用参数</h5><p>根据程序入口<code>main（String[] args）</code>中的参数配置对应的应用参数，等到应用参数对象。</p>
-<h5 id="4-7-根据应用参数及spring-boot监听配置环境并提供环境配置对象"><a href="#4-7-根据应用参数及spring-boot监听配置环境并提供环境配置对象" class="headerlink" title="4.7 根据应用参数及spring boot监听配置环境并提供环境配置对象"></a>4.7 根据应用参数及<code>spring boot</code>监听配置环境并提供环境配置对象</h5><p>获取或创建环境容器</p>
-<p>加载配置文件并根据<code>spring.profiles.active</code>加载profile</p>
-<p>加载配置文件并触发<code>环境前监听</code></p>
-<h5 id="4-8-打印横幅"><a href="#4-8-打印横幅" class="headerlink" title="4.8 打印横幅"></a>4.8 打印横幅</h5><h5 id="4-9-创建ApplicationContext"><a href="#4-9-创建ApplicationContext" class="headerlink" title="4.9 创建ApplicationContext"></a>4.9 创建ApplicationContext</h5><h5 id="4-10-创建失败分析器"><a href="#4-10-创建失败分析器" class="headerlink" title="4.10 创建失败分析器"></a>4.10 创建失败分析器</h5><p>加载在<code>classpath:META-INF/spring.factories</code>文件中属性<code>key</code>为<code>org.springframework.boot.diagnostics.FailureAnalyzer</code>的值——失败分析器的全限定名，</p>
-<p>并且注入<code>BeanFactory</code>。</p>
-<p>注意，此失败分析器与4.3提到的并不是一个失败分析器，当前创建失败分析器为配置<code>spring.factories</code>中的失败分析器。</p>
-<h5 id="4-11-前置配置ApplicationContext"><a href="#4-11-前置配置ApplicationContext" class="headerlink" title="4.11 前置配置ApplicationContext"></a>4.11 前置配置ApplicationContext</h5><p>注入前面构建好的环境对象到<code>ApplicationContext</code></p>
-<p>根据<code>BeanNamedGenerator</code>和<code>ResourceLoader</code>后置处理ApplicationContext</p>
-<p>应用所有初始化器</p>
-<p>响应应用上下文前置监听</p>
-<p>初始化日志对象</p>
-<p>把应用参数对象加入到容器中</p>
-<p>加载所有资源到<code>ApplicationContext</code></p>
-<p>响应应用加载时监听</p>
-<h5 id="4-12-刷新ApplicationContext"><a href="#4-12-刷新ApplicationContext" class="headerlink" title="4.12 刷新ApplicationContext"></a>4.12 刷新ApplicationContext</h5><p>刷新<code>BeanFactory</code></p>
-<p>自定义后置处理<code>Bean</code>工厂，若未继承<code>SpringApplication</code>并且未实现该方法，未此步骤忽略</p>
-<p>调用<code>Bean</code>工厂后置处理器</p>
-<p>注册<code>Bean</code>后置处理器</p>
-<p>初始化国际化</p>
-<p>初始化应用事件</p>
-<p>自定义刷新，若未继承<code>SpringApplication</code>并且未实现该方法，未此步骤忽略</p>
-<p>注册所有监听到容器</p>
-<p>结束<code>BeanFactory</code>初始化</p>
-<p>结束<code>IOC</code>容器初始化</p>
-<p>注册销毁回调</p>
-<h5 id="4-13-刷新后处理"><a href="#4-13-刷新后处理" class="headerlink" title="4.13 刷新后处理"></a>4.13 刷新后处理</h5><p>回调所有Runner</p>
-<h5 id="4-14-响应所有上下文初始化完成时监听"><a href="#4-14-响应所有上下文初始化完成时监听" class="headerlink" title="4.14 响应所有上下文初始化完成时监听"></a>4.14 响应所有上下文初始化完成时监听</h5><h5 id="4-15-关闭StopWatch"><a href="#4-15-关闭StopWatch" class="headerlink" title="4.15 关闭StopWatch"></a>4.15 关闭<code>StopWatch</code></h5><h5 id="4-16-日志输出"><a href="#4-16-日志输出" class="headerlink" title="4.16 日志输出"></a>4.16 日志输出</h5>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -719,428 +538,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kezhijie.org/2018/12/22/dubbo/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eightmonth | 柯志杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eightmonth">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/22/dubbo/" class="post-title-link" itemprop="url">Dubbo源码架构</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-22 12:05:20" itemprop="dateCreated datePublished" datetime="2018-12-22T12:05:20+08:00">2018-12-22</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Dubbo/" itemprop="url" rel="index"><span itemprop="name">Dubbo</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Dubbo源码架构"><a href="#Dubbo源码架构" class="headerlink" title="Dubbo源码架构"></a>Dubbo源码架构</h1><blockquote>
-<p>个人笔记，非原创博文 </p>
-<p>最顶层概念：要么是提供方（Provider）提供服务，要么是消费方（Customer）消费服务。</p>
-<p>源码地址：<a href="https://github.com/alibaba/dubbo" target="_blank" rel="noopener">https://github.com/alibaba/dubbo</a></p>
-</blockquote>
-<h3 id="架构抽象图"><a href="#架构抽象图" class="headerlink" title="架构抽象图"></a>架构抽象图</h3><p><img src="../../../../img/dubbo/dubbo.png" alt="dubbo架构"></p>
-<h3 id="架构图一说明"><a href="#架构图一说明" class="headerlink" title="架构图一说明"></a>架构图一说明</h3><p>Dubbo框架设计一共划分了10个层，而最上面的Service层是留给实际想要使用Dubbo开发分布式服务的开发者实现业务逻辑的接口层。图中左边淡蓝背景的为服务消费方使用的接口，右边淡绿色背景的为服务提供方使用的接口， 位于中轴线上的为双方都用到的接口。</p>
-<h3 id="1-业务逻辑"><a href="#1-业务逻辑" class="headerlink" title="1.业务逻辑"></a>1.业务逻辑</h3><p>服务接口层（Service）：该层是与实际业务逻辑相关的，根据服务提供方和服务消费方的业务设计对应的接口和实现。</p>
-<h3 id="2-RPC模块"><a href="#2-RPC模块" class="headerlink" title="2.RPC模块"></a>2.RPC模块</h3><ul>
-<li>配置层（Config）：对外配置接口，以ServiceConfig和ReferenceConfig为中心，可以直接new配置类，也可以通过spring解析配置生成配置类。</li>
-</ul>
-<ul>
-<li>服务代理层（Proxy）：服务接口透明代理，生成服务的客户端访问入口和服务器端结构，以ServiceProxy为中心，扩展接口为ProxyFactory。</li>
-</ul>
-<ul>
-<li>服务注册层（Registry）：封装服务地址的注册与发现，以服务URL为中心，扩展接口为RegistryFactory、Registry和RegistryService。可能没有服务注册中心，此时服务提供方直接暴露服务。</li>
-</ul>
-<ul>
-<li>集群层（Cluster）：封装多个提供者的路由及负载均衡，并桥接注册中心，以Invoker为中心，扩展接口为Cluster、Directory、Router和LoadBalance。将多个服务提供方组合为一个服务提供方，实现对服务消费方来透明，只需要与一个服务提供方进行交互。同时这一层也是Dubbo体现服务治理的层面。</li>
-</ul>
-<ul>
-<li>监控层（Monitor）：RPC调用次数和调用时间监控，以Statistics为中心，扩展接口为MonitorFactory、Monitor和MonitorService。</li>
-<li>协议定义层（Protocol）：封将RPC调用，以Invocation和Result为中心，扩展接口为Protocol、Invoker和Exporter。Protocol是服务域，它是Invoker暴露和引用的主功能入口，它负责Invoker的生命周期管理。<strong>Invoker是实体域，它是Dubbo的核心模型，其它模型都向它靠扰，或转换成它</strong>，它代表一个可执行体，可向它发起invoke调用，它有可能是一个本地的实现，也可能是一个远程的实现，也可能一个集群实现。</li>
-</ul>
-<h3 id="3-远程调用协议"><a href="#3-远程调用协议" class="headerlink" title="3.远程调用协议"></a>3.远程调用协议</h3><ul>
-<li>信息交换层（Exchange）：封装请求响应模式，同步转异步，以Request和Response为中心，扩展接口为Exchanger、ExchangeChannel、ExchangeClient和ExchangeServer。</li>
-<li>网络传输层（Transport）：抽象mina和netty为统一接口，以Message为中心，扩展接口为Channel、Transporter、Client、Server和Codec</li>
-<li>数据序列化层（Serialize）：可复用的一些工具，扩展接口为Serialization、 ObjectInput、ObjectOutput和ThreadPool。</li>
-</ul>
-<h2 id="额外说明"><a href="#额外说明" class="headerlink" title="额外说明"></a>额外说明</h2><p>从上图可以看出，Dubbo对于服务提供方和服务消费方，从框架的10层中分别提供了各自需要关心和扩展的接口，构建整个服务生态系统（服务提供方和服务消费方本身就是一个以服务为中心的）。</p>
-<ol>
-<li>在RPC中，Protocol是核心层，也就是只要有Protocol + Invoker + Exporter就可以完成非透明的RPC调用，然后在Invoker的主过程上Filter拦截点。</li>
-<li>图中的Consumer和Provider是抽象概念，只是想让看图者更直观的了解哪些类分属于客户端与服务器端，不用Client和Server的原因是Dubbo在很多场景下都使用Provider、Consumer、Registry、Monitor划分逻辑拓普节点，保持统一概念。</li>
-<li>Cluster是外围概念，所以Cluster的目的是将多个Invoker伪装成一个Invoker，这样其它人只要关注Protocol层Invoker即可，加上Cluster或者去掉Cluster对其它层都不会造成影响，因为只有一个提供者时，是不需要Cluster的。如果有多个提供者时，那Cluster将是Dubbo服务治理的入口，所有的服务治理都从Cluster开始并且延续到更低层的Directory、Router、LoadBalance。</li>
-<li>Proxy层封装了所有接口的透明化代理，而在其它层都以Invoker为中心，只有到了暴露给用户使用时，才用Proxy将Invoker转成接口，或将接口实现转成Invoker，也就是去掉Proxy层RPC是可以Run的，只是不那么透明，不那么看起来像调本地服务一样调远程服务。</li>
-<li>Remoting实现是Dubbo协议的实现，如果你选择RMI协议，整个Remoting都不会用上，Remoting内部再划为Transport传输层和Exchange信息交换层，Transport层只负责单向消息传输，是对Mina、Netty、Grizzly的抽象，它也可以扩展UDP传输，而Exchange层是在传输层之上封装了Request-Response语义。</li>
-<li>Registry和Monitor实际上不算一层，而是一个独立的节点，只是为了全局概览，用层的方式画在一起。 </li>
-</ol>
-<h2 id="核心要点"><a href="#核心要点" class="headerlink" title="核心要点"></a>核心要点</h2><p>从上面的架构图中，我们可以了解到，Dubbo作为一个分布式服务框架，主要具有如下几个核心的要点：</p>
-<h4 id="1-服务定义"><a href="#1-服务定义" class="headerlink" title="1.服务定义"></a>1.服务定义</h4><p>服务是围绕服务提供方和服务消费方的，服务提供方实现服务，而服务消费方调用服务。</p>
-<h4 id="2-服务注册"><a href="#2-服务注册" class="headerlink" title="2.服务注册"></a>2.服务注册</h4><p>对于服务提供方，它需要发布服务，而且由于应用系统的复杂性，服务的数量、类型也不断膨胀；对于服务消费方，它最关心如何获取到它所需要的服务，而面对复杂的应用系统，需要管理大量的服务调用。而且，对于服务提供方和服务消费方来说，他们还有可能兼具这两种角色，即既需要提供服务，有需要消费服务。通过将服务统一管理起来，可以有效地优化内部应用对服务发布/使用的流程和管理。服务注册中心可以通过特定协议来完成服务对外的统一。Dubbo提供的注册中心有如下几种类型可供选择：</p>
-<ul>
-<li>Multicast注册中心</li>
-<li>Zookeeper注册中心</li>
-<li>Redis注册中心</li>
-<li>Default注册中心</li>
-</ul>
-<h4 id="3-服务监控"><a href="#3-服务监控" class="headerlink" title="3.服务监控"></a>3.服务监控</h4><p>无论是服务提供方，还是服务消费方，他们都需要对服务调用的实际状态进行有效的监控，从而改进服务质量。</p>
-<h4 id="4-远程通信与信息交换"><a href="#4-远程通信与信息交换" class="headerlink" title="4.远程通信与信息交换"></a>4.远程通信与信息交换</h4><p>远程通信需要指定通信双方所约定的协议，在保证通信双方理解协议语义的基础上，还要保证高效、稳定的消息传输。Dubbo继承了当前主流的网络通信框架，主要包括如下几个：</p>
-<ul>
-<li>Mina</li>
-</ul>
-<ul>
-<li>Netty</li>
-<li>Grizzly</li>
-</ul>
-<h4 id="5-服务调用"><a href="#5-服务调用" class="headerlink" title="5.服务调用"></a>5.服务调用</h4><p><img src="../../../../img/dubbo/service-call.png" alt="service-call"></p>
-<blockquote>
-<p>服务调用过程</p>
-<p>上图中，蓝色的表示与业务有交互，绿色的表示只对Dubbo内部交互。上述图所描述的调用流程如下：</p>
-<ol>
-<li>服务提供方发布服务到服务注册中心；</li>
-<li>服务消费方从服务注册中心订阅服务；</li>
-<li>服务消费方调用已经注册的可用服务。</li>
-</ol>
-</blockquote>
-<p>详细如图所示：</p>
-<p><img src="../../../../img/dubbo/service-call-detail.png" alt="service-call-detail"></p>
-<h4 id="4-服务注册与注销"><a href="#4-服务注册与注销" class="headerlink" title="4.服务注册与注销"></a>4.服务注册与注销</h4><p><img src="../../../../img/dubbo/service-register.png" alt="service-register"></p>
-<h4 id="5-服务订阅与取消"><a href="#5-服务订阅与取消" class="headerlink" title="5.服务订阅与取消"></a>5.服务订阅与取消</h4><p><img src="../img/dubbo/service-Subscribe.png" alt="service-Subscribe"></p>
-<h4 id="6-协议支持"><a href="#6-协议支持" class="headerlink" title="6.协议支持"></a>6.协议支持</h4><p>Dubbo支持自定义扩展协议，实现dubbo-rpc-api即可扩展出一种Dubbo支持的协议。Dubbo目前已实现的协议如下：</p>
-<ul>
-<li>Dubbo协议</li>
-<li>Hessian协议</li>
-<li>HTTP协议</li>
-<li>RMI协议</li>
-<li>WebService协议</li>
-<li>Thrift协议</li>
-<li>Memcached协议</li>
-<li>Redis协议</li>
-</ul>
-<h2 id="Dubbo模块图"><a href="#Dubbo模块图" class="headerlink" title="Dubbo模块图"></a>Dubbo模块图</h2><p>Dubbo以包结构来组织各个模块，各个模块及其关系，如图所示：</p>
-<p><img src="../../../../img/dubbo/module.png" alt="module"></p>
-<ul>
-<li>Dubbo-common 公共逻辑模块，包括Util类和通用模型。</li>
-<li>Dubbo-remoting 远程通讯模块，相当于Dubbo协议的实现，如果RPC用RMI协议则不需要使用此包。</li>
-<li>Dubbo-rpc 远程调用模块，抽象各种协议，以及动态代理，只包含一对一的调用，不关心集群的管理。</li>
-<li>Dubbo-cluster 集群模块，将多个服务提供方伪装为一个提供方，包括：负载均衡、容错、路由等，集群的地址列表可以是静态配置的，也可以是由注册中心下发。</li>
-<li>Dubbo-registry 注册中心模块，基于注册中心下发地址的集群方式，以及对各种注册中心的抽象。</li>
-<li>Dubbo-monitor 监控模块，统计服务调用次数，调用时间的，调用链跟踪的服务。</li>
-<li>Dubbo-config 配置模块，是Dubbo对外的API，用户通过Config使用Dubbo，隐藏Dubbo所有细节。</li>
-<li>dubbo-container 容器模块，是一个Standalone的容器，以简单的Main加载Spring启动，因为服务通常不需要Tomcat/JBoss等Web容器的特性，没必要用Web容器去加载服务。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kezhijie.org/2018/12/22/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eightmonth | 柯志杰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eightmonth">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/22/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-22 12:05:16" itemprop="dateCreated datePublished" datetime="2018-12-22T12:05:16+08:00">2018-12-22</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Hello-World/" itemprop="url" rel="index"><span itemprop="name">Hello World</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1160,8 +566,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1250,6 +665,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#XXL-JOB-EXECUTOR-源码解析"><span class="nav-number">1.</span> <span class="nav-text">XXL-JOB EXECUTOR 源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用顺序"><span class="nav-number">1.0.1.</span> <span class="nav-text">调用顺序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1378,6 +810,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
 
   
 
@@ -1393,6 +829,8 @@
 
   
 
+
+  
 
 
   
